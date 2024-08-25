@@ -1,0 +1,146 @@
+/** @format */
+//  browser reset options
+// @forward "./base/reset";
+// @forward "./base/typhograpy";
+@forward "./base//index";
+@use "./utils/index";
+
+// mixin
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+}
+@mixin box-model($fontSize) {
+	gap: 20px;
+	margin: 20px;
+	width: 50%;
+	border: 10px solid yellow;
+	padding: 5em;
+	text-align: center;
+	font-size: $fontSize;
+}
+// if else statement
+
+@mixin setFontSize($props) {
+	@if $props == small {
+		font-size: 10px;
+	} @else if $props == medium {
+		font-size: 15px;
+	} @else if $props == large {
+		font-size: 20px;
+	} @else {
+		font: optional;
+	}
+}
+.description {
+	@include setFontSize(large);
+}
+
+.box-container {
+	@include flex-center;
+}
+.box {
+	@include box-model(3em);
+}
+
+// loop
+// @for $i from 1 through 5 {
+// 	.col-#{$i} {
+// 		box-sizing: border-box;
+// 		width: #{20 * $i}%;
+// 	}
+// }
+
+.grid {
+	display: grid;
+	border: 4px solid red;
+}
+
+// extend
+.primary-btn {
+	border: none;
+	border-radius: 8px;
+	padding: 12px;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.prev-btn:hover {
+	background-color: lightblue;
+}
+.prev-btn {
+	transition: 1s;
+	@extend .primary-btn;
+}
+.next-btn:hover {
+	background-color: blueviolet;
+}
+.next-btn {
+	transition: 0.6s;
+	@extend .primary-btn;
+}
+
+//import variable
+.description {
+	color: index.$primary_text_color;
+}
+// scss variable ------------
+$primary-color: rgba(1, 234, 226, 0.834);
+$primary-btn-bg: rgba(1, 230, 150, 0.79);
+$primary-element-bg: rgba(1, 230, 150, 0.146);
+
+h1 {
+	color: $primary-color;
+	text-align: center;
+	background-color: $primary-element-bg;
+	padding: 20px;
+}
+footer {
+	z-index: 120;
+	background-color: $primary-element-bg;
+	padding: 20px;
+	text-align: center;
+	color: $primary-color;
+	margin-top: 30px;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+}
+
+/* scss nesting ------ */
+main {
+	padding: 5px;
+}
+header {
+	border-radius: 20px;
+	border: 2px solid $primary-btn-bg;
+	padding: 20px;
+
+	nav {
+		background-color: $primary-element-bg;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+
+		ul {
+			list-style: none;
+			display: flex;
+			gap: 20px;
+			li {
+				a {
+					text-decoration: none;
+					transition: 0.4s;
+					padding: 5px;
+				}
+				a:hover {
+					background-color: $primary-btn-bg;
+
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
+//
